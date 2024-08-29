@@ -18,7 +18,7 @@ group = "todo"
 version = "1.0-SNAPSHOT"
 
 kotlin {
-    configAsKobwebApplication(includeServer = true)
+    configAsKobwebApplication("SomeIncorrectValue", includeServer = true)
 
     sourceSets {
         val commonMain by getting {
