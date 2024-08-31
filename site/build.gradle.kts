@@ -1,10 +1,13 @@
+import com.varabyte.kobweb.gradle.application.extensions.AppBlock.LegacyRouteRedirectStrategy
 import com.varabyte.kobweb.gradle.application.util.configAsKobwebApplication
+import kotlinx.html.link
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.kobweb.application)
+    alias(libs.plugins.kobwebx.markdown)
 }
 
 repositories {
@@ -14,11 +17,22 @@ repositories {
     maven("https://us-central1-maven.pkg.dev/varabyte-repos/public")
 }
 
-group = "todo"
+group = "pixelpark"
 version = "1.0-SNAPSHOT"
 
+kobweb {
+    app {
+        index {
+            description.set("Powered by Kobweb")
+            head.add {
+                link(rel = "stylesheet", href = "/fonts/faces.css")
+            }
+        }
+    }
+}
+
 kotlin {
-    configAsKobwebApplication("SomeIncorrectValue", includeServer = true)
+    configAsKobwebApplication(includeServer = true)
 
     sourceSets {
         val commonMain by getting {
@@ -33,6 +47,7 @@ kotlin {
                 implementation(compose.html.core)
                 implementation(libs.kobweb.core)
                 implementation(libs.kobweb.silk.core)
+                implementation(libs.kobwebx.markdown)
             }
         }
 

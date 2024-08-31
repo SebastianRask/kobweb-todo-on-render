@@ -6,7 +6,7 @@ pluginManagement {
     }
 }
 
-rootProject.name = "todo"
+rootProject.name = "pixelpark"
 
 include(":site")
 
